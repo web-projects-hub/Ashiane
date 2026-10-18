@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f1b2d">
+<title>آشیانه | بازار تخصصی پرندگان</title>
+<meta name="description" content="آشیانه؛ محیطی مدرن برای آشنایی با گونه‌های پرندگان و مشاهده آگهی‌های خرید و فروش.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fa_IR">
+<meta property="og:title" content="آشیانه | بازار تخصصی پرندگان">
+<meta property="og:description" content="آشیانه؛ محیطی مدرن برای آشنایی با گونه‌های پرندگان و مشاهده آگهی‌های خرید و فروش.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1552728089-57bdde30beb3?auto=format&fit=crop&w=1200&q=80">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230f1b2d'/%3E%3Ctext x='50' y='72' font-size='64' text-anchor='middle' fill='%23d9ac4f'%3E♧%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0f1b2d;
+  --navy2:#18283f;
+  --navy3:#243957;
+  --gold:#b8862b;
+  --gold2:#d9ac4f;
+  --bg:#f3f5f8;
+  --white:#fff;
+  --ink:#16202f;
+  --muted:#6b7686;
+  --line:#e1e6ed;
+  --soft:#eef1f6;
+  --shadow:0 4px 18px #0f1b2d12;
+  --radius:12px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Vazirmatn",Tahoma,sans-serif;overflow-x:hidden;line-height:1.7}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #d9ac4f88;outline-offset:2px}
+::selection{background:var(--gold2);color:var(--navy)}
+.container{width:min(1240px,93%);margin:auto}
+#progress{position:fixed;top:0;right:0;height:3px;width:0;z-index:200;background:var(--gold2)}
+
+/* نوار بالا */
+.topbar{background:var(--navy);color:#c5cddb;font-size:11px}
+.topbar .container{display:flex;justify-content:space-between;align-items:center;gap:12px;height:36px}
+.topbar b{color:var(--gold2);direction:ltr;display:inline-block;font-weight:700}
+.topbar span{display:flex;align-items:center;gap:6px}
+
+/* هدر */
+header{position:sticky;top:0;z-index:30;background:var(--white);border-bottom:1px solid var(--line);transition:box-shadow .3s}
+header.scrolled{box-shadow:0 6px 22px #0f1b2d18}
+.nav{height:74px;display:flex;align-items:center;justify-content:space-between;gap:22px;transition:height .3s}
+header.scrolled .nav{height:62px}
+.brand{display:flex;align-items:center;gap:11px;font-size:23px;font-weight:900;color:var(--navy)}
+.brand-icon{display:grid;place-items:center;width:42px;height:42px;border-radius:10px;color:var(--gold2);background:var(--navy);font-size:22px;border-bottom:3px solid var(--gold)}
+.brand small{display:block;font-size:9px;color:var(--muted);letter-spacing:1.6px;font-weight:600;margin-top:-4px}
+.navlinks{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--navy3)}
+.navlinks a{position:relative;padding:9px 14px;border-radius:8px;transition:.2s}
+.navlinks a:hover,.navlinks a.on{background:var(--soft);color:var(--navy)}
+.navlinks a.on:after{content:"";position:absolute;bottom:2px;right:14px;left:14px;height:2px;background:var(--gold);border-radius:2px}
+.nav-actions{display:flex;gap:9px;align-items:center}
+.btn{border:0;border-radius:9px;padding:11px 18px;font-size:13px;font-weight:700;transition:.2s;display:inline-flex;align-items:center;justify-content:center;gap:7px}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--navy);color:#fff;border-bottom:2px solid var(--gold)}
+.btn-primary:hover{background:var(--navy3);box-shadow:0 8px 20px #0f1b2d30}
+.btn-light{background:var(--soft);color:var(--navy)}
+.btn-light:hover{background:#e2e8f1}
+.btn-outline{background:#fff;border:1px solid #cfd6e1;color:var(--navy)}
+.btn-outline:hover{border-color:var(--navy);background:var(--soft)}
+.btn-gold{background:var(--gold);color:#fff}
+.btn-gold:hover{background:#a2751f}
+.icon-btn{width:42px;height:42px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--navy);font-size:18px;position:relative;transition:.2s}
+.icon-btn:hover{border-color:var(--navy)}
+.count{position:absolute;top:-7px;left:-6px;background:var(--gold);color:#fff;border-radius:20px;min-width:18px;height:18px;font-size:10px;display:grid;place-items:center;padding:0 4px;font-weight:700}
+
+/* هیرو */
+.hero{padding:26px 0 10px}
+.hero-card{min-height:380px;position:relative;overflow:hidden;border-radius:16px;background:linear-gradient(120deg,#0b1626 0%,#142238 55%,#1d3150 100%);color:#fff;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;padding:48px 6%;isolation:isolate;box-shadow:0 20px 50px #0f1b2d30}
+.hero-card:before{content:"";position:absolute;inset:0;z-index:-1;background:repeating-linear-gradient(135deg,#ffffff06 0 2px,transparent 2px 22px)}
+.hero-card:after{content:"";position:absolute;z-index:-1;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,#d9ac4f30,transparent 68%);top:-160px;left:-120px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:#ffffff12;padding:7px 14px;border:1px solid #ffffff22;border-radius:6px;font-size:11px;color:var(--gold2);font-weight:700}
+.dot{width:7px;height:7px;background:var(--gold2);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 #d9ac4f88}100%{box-shadow:0 0 0 9px #d9ac4f00}}
+.hero h1{font-size:clamp(30px,4vw,50px);line-height:1.5;letter-spacing:-1.5px;margin:20px 0 12px;font-weight:900}
+.hero h1 span{color:var(--gold2)}
+.hero p{font-size:14px;color:#b9c4d6;line-height:2.2;max-width:480px}
+.hero-buttons{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.hero-card .btn-primary{background:var(--gold);border-bottom:0}
+.hero-card .btn-primary:hover{background:#a2751f}
+.hero-card .btn-light{background:#ffffff14;color:#fff;border:1px solid #ffffff2a}
+.hero-card .btn-light:hover{background:#ffffff22}
+.hero-visual{position:relative;min-height:280px;display:grid;place-items:center}
+.hero-photo{width:min(100%,400px);height:290px;object-fit:cover;border-radius:14px;border:1px solid #ffffff30;box-shadow:0 25px 60px #00000055,0 0 0 8px #ffffff0d}
+.float-tag{position:absolute;background:#fff;color:var(--ink);border-radius:10px;padding:12px 15px;box-shadow:var(--shadow);font-size:12px;font-weight:800;border-right:3px solid var(--gold)}
+.float-tag small{display:block;font-size:10px;color:var(--muted);font-weight:400;margin-top:2px}
+.tag-a{top:8px;right:-6px}.tag-b{bottom:8px;left:-4px}
+
+/* آمار */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:18px 0 34px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.stat{padding:20px;text-align:center;border-left:1px solid var(--line)}
+.stat:last-child{border-left:0}
+.stat strong{font-size:25px;color:var(--navy);display:block;font-weight:900}
+.stat span{font-size:11px;color:var(--muted)}
+
+/* بخش‌ها */
+.section{padding:22px 0 30px;scroll-margin-top:90px}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.kicker{font-size:10px;color:var(--gold);font-weight:800;letter-spacing:1.5px}
+.section h2{font-size:clamp(22px,3vw,28px);margin:5px 0 4px;font-weight:900;color:var(--navy);position:relative}
+.section-head p{font-size:12px;color:var(--muted);margin:0}
+.categories{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+.category{border:1px solid var(--line);background:#fff;border-radius:var(--radius);padding:20px 8px;text-align:center;transition:.22s;position:relative;overflow:hidden}
+.category:after{content:"";position:absolute;bottom:0;right:0;left:0;height:3px;background:var(--gold);transform:scaleX(0);transition:transform .25s}
+.category:hover,.category.active{border-color:var(--navy);transform:translateY(-3px);box-shadow:var(--shadow)}
+.category:hover:after,.category.active:after{transform:scaleX(1)}
+.category.active{background:var(--navy);color:#fff}
+.category.active small{color:#b9c4d6}
+.category .emoji{font-size:29px;display:block;margin-bottom:10px}
+.category strong{display:block;font-size:12px}
+.category small{display:block;color:var(--muted);font-size:10px;margin-top:4px}
+
+/* فیلترها */
+.filters{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:10px;margin-bottom:16px;box-shadow:var(--shadow);align-items:end}
+.field{min-width:0;position:relative}
+.field label{display:block;font-size:11px;color:var(--muted);margin:0 0 6px 3px;font-weight:600}
+.field input,.field select{width:100%;min-width:0;border:1px solid #d5dce7;background:#fafbfd;border-radius:8px;padding:11px 12px;font-size:12px;color:var(--ink);transition:.2s}
+.field input:focus,.field select:focus{border-color:var(--navy);box-shadow:0 0 0 3px #0f1b2d14;outline:none;background:#fff}
+.search-wrap input{padding-right:38px}
+.search-icon{position:absolute;right:13px;top:34px;color:var(--navy3)}
+.result-line{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:18px 0}
+.result-line strong{font-size:14px;color:var(--navy)}
+.result-line span{font-size:11px;color:var(--muted);background:#fff;border:1px solid var(--line);padding:4px 12px;border-radius:20px}
+
+/* کارت آگهی */
+.product-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.product{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:transform .25s,box-shadow .25s,border-color .25s;min-width:0;animation:cardIn .5s both}
+@keyframes cardIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.product:hover{transform:translateY(-5px);box-shadow:0 18px 40px #0f1b2d1c;border-color:#c3ccda}
+.product-image{height:185px;position:relative;background:var(--soft);overflow:hidden}
+.product-image img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.product:hover .product-image img{transform:scale(1.06)}
+.pill{position:absolute;top:10px;right:10px;background:var(--navy);color:var(--gold2);border-radius:5px;padding:4px 9px;font-size:10px;font-weight:700}
+.fav{position:absolute;top:9px;left:9px;width:34px;height:34px;border:0;border-radius:8px;background:#ffffffee;font-size:17px;color:#7b8594;display:grid;place-items:center;transition:transform .2s}
+.fav:hover{transform:scale(1.12)}
+.fav.active{color:#c43d2b;animation:pop .4s}
+@keyframes pop{50%{transform:scale(1.35)}}
+.product-content{padding:14px}
+.product-type{font-size:10px;color:var(--gold);font-weight:800}
+.product h3{font-size:14.5px;margin:6px 0 9px;line-height:1.7;color:var(--navy)}
+.product-meta{display:flex;flex-wrap:wrap;gap:12px;color:var(--muted);font-size:10.5px}
+.product-bottom{border-top:1px solid var(--line);margin-top:13px;padding-top:12px;display:flex;align-items:center;justify-content:space-between;gap:7px}
+.price{font-size:14px;font-weight:900;color:var(--navy)}
+.price small{font-size:9px;color:var(--muted);font-weight:400}
+.product-bottom button{padding:8px 12px;font-size:11px;border-radius:7px}
+.verified{color:var(--muted);font-size:10px;margin-top:9px}
+.empty{grid-column:1/-1;text-align:center;padding:55px 15px;border:1px dashed #c3ccda;border-radius:var(--radius);background:#fff}
+.empty strong{font-size:18px}.empty p{font-size:12px;color:var(--muted)}
+.pagination{display:flex;justify-content:center;align-items:center;gap:7px;margin-top:26px}
+.pagination button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:9px 14px;font-size:12px;transition:.2s;font-weight:600}
+.pagination button:hover:not(:disabled){border-color:var(--navy)}
+.pagination button:disabled{opacity:.45;cursor:default}
+.pagination button.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+/* بخش استاندارد */
+.feature-strip{background:linear-gradient(130deg,#0b1626,#18283f);color:#fff;border-radius:16px;padding:34px;margin:18px 0 34px;display:grid;grid-template-columns:1.2fr 2fr;gap:26px;align-items:center;position:relative;overflow:hidden}
+.feature-strip:before{content:"";position:absolute;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,#d9ac4f2e,transparent 70%);top:-160px;left:-80px;pointer-events:none}
+.feature-strip h2{font-size:24px;margin:6px 0 8px;color:#fff}
+.feature-strip p{font-size:12.5px;color:#b9c4d6;line-height:2}
+.feature-strip .btn-light{background:var(--gold);color:#fff;margin-top:6px}
+.feature-items{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;position:relative}
+.feature-item{padding:20px 15px;border:1px solid #ffffff1c;border-radius:12px;background:#ffffff0a;transition:.3s}
+.feature-item:hover{transform:translateY(-4px);border-color:#d9ac4f88;background:#ffffff12}
+.feature-item b{display:block;font-size:13px;margin:10px 0 5px;color:var(--gold2)}
+.feature-item span{font-size:10.5px;color:#b9c4d6;line-height:1.9}
+
+/* فوتر */
+footer{margin-top:40px;background:var(--navy);color:#c5cddb;padding:42px 0 20px;border-top:4px solid var(--gold)}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:34px}
+footer .brand{color:#fff}
+footer .brand small{color:#8e9bb0}
+footer h3{font-size:15px;color:#fff;margin:0 0 8px}
+footer p,footer a{font-size:12px;line-height:2.3;color:#a9b4c6}
+footer a:hover{color:var(--gold2)}
+.footer-links{display:flex;flex-direction:column;align-items:flex-start}
+.phone-card{margin-top:28px;background:var(--navy2);border:1px solid #2c4263;border-radius:var(--radius);padding:20px;display:flex;justify-content:space-between;align-items:center;gap:15px}
+.phone-card strong{font-size:14px;color:#fff}
+.phone-card p{color:#a9b4c6}
+.phone-card .btn-light{background:var(--gold);color:#fff}
+.phone-card .btn-light:hover{background:#a2751f}
+.phone-number{font-size:18px;font-weight:900;direction:ltr;display:inline-block;letter-spacing:.5px}
+.copyright{text-align:center;border-top:1px solid #2c4263;margin-top:26px;padding-top:18px;font-size:10px;color:#8e9bb0}
+
+/* توست و مودال */
+.toast{position:fixed;bottom:25px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;z-index:100;background:var(--navy);color:#fff;border-right:3px solid var(--gold);border-radius:9px;padding:13px 20px;font-size:12px;box-shadow:0 10px 30px #0f1b2d55;transition:.25s;max-width:90%;text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.overlay{position:fixed;inset:0;z-index:80;background:#0b1626cc;backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:18px}
+.overlay.open{display:flex}
+.overlay.open .modal{animation:modalIn .3s cubic-bezier(.2,.9,.3,1.1)}
+@keyframes modalIn{from{opacity:0;transform:scale(.94) translateY(16px)}to{opacity:1;transform:none}}
+.modal{width:min(760px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:16px;padding:24px;position:relative;border-top:4px solid var(--gold)}
+.modal-close{position:absolute;top:14px;left:14px;width:36px;height:36px;border:0;border-radius:8px;background:var(--soft);font-size:20px;color:var(--navy);transition:.2s}
+.modal-close:hover{background:var(--navy);color:#fff}
+.modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:20px}
+.modal-grid img{width:100%;height:280px;object-fit:cover;border-radius:12px;background:var(--soft)}
+.modal h2{font-size:23px;color:var(--navy)}
+.modal p{font-size:13px;line-height:2;color:#566176}
+.modal-price{font-size:22px;color:var(--navy);font-weight:900}
+.modal-note{background:var(--soft);border-radius:9px;padding:12px;font-size:11.5px;line-height:2;color:#46526a;border-right:3px solid var(--gold)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-grid .field{margin-bottom:5px}
+.form-grid .full{grid-column:1/-1}
+.compare-bar{position:fixed;bottom:15px;right:50%;transform:translateX(50%);z-index:40;background:var(--navy);color:#fff;padding:12px 17px;border-radius:12px;border-bottom:3px solid var(--gold);display:none;align-items:center;gap:12px;box-shadow:0 10px 35px #0f1b2d55;max-width:95%;font-size:12px}
+.compare-bar.show{display:flex;animation:barIn .4s}
+@keyframes barIn{from{opacity:0;transform:translateX(50%) translateY(30px)}to{opacity:1;transform:translateX(50%)}}
+#toTop{position:fixed;bottom:22px;left:22px;width:44px;height:44px;border:0;border-radius:10px;z-index:60;background:var(--navy);color:var(--gold2);font-size:19px;border-bottom:3px solid var(--gold);box-shadow:0 10px 25px #0f1b2d40;opacity:0;transform:translateY(20px);pointer-events:none;transition:.3s}
+#toTop.show{opacity:1;transform:none;pointer-events:auto}
+#toTop:hover{transform:translateY(-3px)}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+.hero-card .eyebrow,.hero-card h1,.hero-card p,.hero-card .hero-buttons{animation:heroIn .8s both}
+.hero-card h1{animation-delay:.1s}.hero-card p{animation-delay:.2s}.hero-card .hero-buttons{animation-delay:.3s}
+@keyframes heroIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+
+@media(max-width:1000px){
+ .navlinks{gap:0}.navlinks a{padding:8px 9px}.hero-card{padding:36px 4%}
+ .product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .filters{grid-template-columns:2fr 1fr 1fr}
+ .filters .field:nth-child(4){grid-column:2}
+ .filters .btn{grid-column:3;grid-row:2}
+ .categories{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:650px){
+ .topbar .hide-m{display:none}
+ .nav{height:64px}.brand{font-size:20px}.navlinks{display:none}
+ .nav-actions .desktop{display:none}.hero{padding-top:16px}
+ .hero-card{grid-template-columns:1fr;padding:28px 22px;border-radius:14px}
+ .hero h1{font-size:33px}.hero p{font-size:12px}
+ .hero-visual{min-height:245px;margin-top:14px}
+ .hero-photo{height:230px;width:92%}
+ .tag-a{right:0}.tag-b{left:0}
+ .stats{grid-template-columns:repeat(2,1fr)}
+ .stat{padding:15px;border-bottom:1px solid var(--line)}
+ .stat:nth-child(2){border-left:0}
+ .stat:nth-last-child(-n+2){border-bottom:0}
+ .stat strong{font-size:21px}
+ .categories{grid-template-columns:repeat(3,1fr);gap:8px}
+ .category{padding:15px 4px}.category .emoji{font-size:24px}
+ .section-head{align-items:flex-start;flex-direction:column}
+ .filters{grid-template-columns:1fr 1fr;padding:12px}
+ .filters .field:first-child{grid-column:1/-1}
+ .filters .field:nth-child(4){grid-column:auto}
+ .filters .btn{grid-column:1/-1;grid-row:auto}
+ .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .product-image{height:140px}.product-content{padding:10px}
+ .product h3{font-size:13px}.product-meta{font-size:9.5px;gap:8px}
+ .price{font-size:12px}.product-bottom button{padding:7px 9px;font-size:10px}
+ .feature-strip{grid-template-columns:1fr;padding:24px}
+ .feature-items{grid-template-columns:1fr}
+ .feature-item{display:grid;grid-template-columns:35px 1fr;align-items:center}
+ .feature-item b{margin:0}.feature-item span.t{grid-column:2}
+ .footer-grid{grid-template-columns:1fr 1fr}
+ .footer-grid>div:first-child{grid-column:1/-1}
+ .phone-card{align-items:flex-start;flex-direction:column}
+ .modal-grid{grid-template-columns:1fr}
+ .modal-grid img{height:220px}
+ .form-grid{grid-template-columns:1fr}
+ .form-grid .full{grid-column:auto}
+ .result-line{align-items:flex-start;flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{animation:none!important;scroll-behavior:auto!important;transition:none!important}
+ .reveal{opacity:1;transform:none}
+}
+
+/* ===== افزودنی‌ها: منوی موبایل، دکمه تماس، قفل اسکرول و کنترل انیمیشن کارت‌ها ===== */
+.product{animation:none}
+.product.enter{animation:cardIn .5s both}
+body.modal-open{overflow:hidden}
+.menu-btn{display:none}
+.mnav{display:none;position:absolute;top:100%;right:0;left:0;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 18px 30px #0f1b2d22}
+@keyframes mnavIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.phone-actions{display:flex;gap:10px;flex-wrap:wrap}
+.phone-actions a.call-btn{background:#ffffff14;color:#fff;border:1px solid #ffffff2a;line-height:1.7}
+.phone-actions a.call-btn:hover{background:#ffffff24;color:#fff}
+@media(max-width:650px){
+ .menu-btn{display:grid;place-items:center}
+ .mnav.open{display:block;animation:mnavIn .25s both}
+ .mnav .container{display:flex;flex-direction:column;gap:2px;padding:10px 0 16px}
+ .mnav a{padding:13px 14px;border-radius:9px;font-size:14px;font-weight:600;color:var(--navy3)}
+ .mnav a:hover{background:var(--soft);color:var(--navy)}
+ .mnav .btn{margin-top:10px;width:100%}
+ .phone-actions{width:100%}
+ .phone-actions .btn{flex:1}
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div class="topbar">
+ <div class="container">
+  <span>🏷 برای خرید پرنده با شماره <a href="tel:09123585844"><b>09123585844</b></a> هماهنگ کنید</span>
+  <span class="hide-m">بازار تخصصی پرندگان زینتی</span>
+ </div>
+</div>
+
+<header id="siteHeader">
+ <div class="container nav">
+  <a class="brand" href="#home">
+   <span class="brand-icon">♧</span>
+   <span>آشیانه<small>ASHIYANEH · BIRD MARKET</small></span>
+  </a>
+  <nav class="navlinks">
+   <a href="#home">صفحه اصلی</a>
+   <a href="#categories">دسته‌بندی پرندگان</a>
+   <a href="#market">بازار پرندگان</a>
+   <a href="#about">درباره آشیانه</a>
+  </nav>
+  <div class="nav-actions">
+   <button class="icon-btn" id="favNav" title="علاقه‌مندی‌ها" aria-label="علاقه‌مندی‌ها">♡<span class="count" id="favCount">0</span></button>
+   <button class="btn btn-primary desktop" id="sellTop">＋ ثبت آگهی</button>
+   <button class="icon-btn menu-btn" id="menuBtn" aria-label="باز کردن منو" aria-expanded="false" aria-controls="mnav">☰</button>
+  </div>
+ </div>
+ <nav class="mnav" id="mnav" aria-label="منوی موبایل">
+  <div class="container">
+   <a href="#home">صفحه اصلی</a>
+   <a href="#categories">دسته‌بندی پرندگان</a>
+   <a href="#market">بازار پرندگان</a>
+   <a href="#about">درباره آشیانه</a>
+   <button class="btn btn-primary" id="mSell">＋ ثبت آگهی</button>
+  </div>
+ </nav>
+</header>
+
+<main>
+<section class="hero container" id="home">
+ <div class="hero-card">
+  <div>
+   <div class="eyebrow"><span class="dot"></span> دنیای پرندگان، یک قدم نزدیک‌تر</div>
+   <h1>جایی برای پیدا کردن<br><span>هم‌پرواز زندگی‌ات</span></h1>
+   <p>در آشیانه، دنیای متنوع پرندگان را کشف کن؛ از قناری‌های خوش‌آواز تا طوطی‌های باشکوه. آگهی‌ها را ببین، مقایسه کن و انتخاب آگاهانه‌تری داشته باش.</p>
+   <div class="hero-buttons">
+    <a href="#market" class="btn btn-primary">مشاهده پرندگان ←</a>
+    <button class="btn btn-light" id="heroSell">＋ ثبت آگهی فروش</button>
+   </div>
+  </div>
+  <div class="hero-visual">
+   <img class="hero-photo" id="heroPhoto" src="https://images.unsplash.com/photo-1552728089-57bdde30beb3?auto=format&fit=crop&w=900&q=85" alt="تصویر یک طوطی زیبا" onerror="this.style.opacity='.15'">
+   <div class="float-tag tag-a">تنوعی از پرندگان<small>از پرندگان زینتی تا طوطی‌سانان</small></div>
+   <div class="float-tag tag-b">🌿 انتخاب با آگاهی<small>پیش از خرید، شرایط نگهداری را بررسی کن</small></div>
+  </div>
+ </div>
+
+ <div class="stats">
+  <div class="stat"><strong>۱۲۰+</strong><span>آگهی نمونه برای نمایش</span></div>
+  <div class="stat"><strong>۲۰+</strong><span>گونه و تنوع پرنده</span></div>
+  <div class="stat"><strong>۶</strong><span>دسته‌بندی اصلی</span></div>
+  <div class="stat"><strong>۲۴/۷</strong><span>امکان مشاهده سایت</span></div>
+ </div>
+</section>
+
+<section class="section container reveal" id="categories">
+ <div class="section-head">
+  <div><div class="kicker">BROWSE CATEGORIES</div><h2>دنیای پرندگان</h2><p>دسته موردنظرت را انتخاب کن تا آگهی‌های مرتبط نمایش داده شوند.</p></div>
+  <button class="btn btn-light" id="allCategories">مشاهده همه ←</button>
+ </div>
+ <div class="categories" id="categoryList">
+  <button class="category active" data-category="همه"><span class="emoji">🕊️</span><strong>همه پرندگان</strong><small>تمام دسته‌ها</small></button>
+  <button class="category" data-category="کاسکو"><span class="emoji">🦜</span><strong>کاسکو</strong><small>طوطی خاکستری</small></button>
+  <button class="category" data-category="قناری"><span class="emoji">🐤</span><strong>قناری</strong><small>خوش‌آواز و رنگارنگ</small></button>
+  <button class="category" data-category="فنچ"><span class="emoji">🐦</span><strong>فنچ</strong><small>کوچک و پرجنب‌وجوش</small></button>
+  <button class="category" data-category="عروس هلندی"><span class="emoji">🦚</span><strong>عروس هلندی</strong><small>اجتماعی و دوست‌داشتنی</small></button>
+  <button class="category" data-category="طوطی"><span class="emoji">🌿</span><strong>انواع طوطی</strong><small>گونه‌های متنوع</small></button>
+ </div>
+</section>
+
+<section class="section container" id="market">
+ <div class="section-head">
+  <div><div class="kicker">THE BIRD MARKET</div><h2>ویترین آشیانه</h2><p>جست‌وجو کن، فیلتر بگذار و پرنده‌ها را با هم مقایسه کن.</p></div>
+  <button class="btn btn-outline" id="compareHelp">⇄ راهنمای مقایسه</button>
+ </div>
+
+ <div class="filters">
+  <div class="field search-wrap">
+   <label for="search">جست‌وجوی فارسی</label>
+   <span class="search-icon">⌕</span>
+   <input id="search" type="search" placeholder="مثلاً کاسکو، قناری زرد، عروس هلندی..." autocomplete="off">
+  </div>
+  <div class="field">
+   <label for="kindFilter">گونه پرنده</label>
+   <select id="kindFilter">
+    <option value="همه">همه گونه‌ها</option>
+    <option>کاسکو</option><option>فنچ</option><option>قناری</option>
+    <option>عروس هلندی</option><option>طوطی</option><option>مرغ عشق</option>
+    <option>سهره</option><option>کبوتر</option><option>مرغ مینا</option>
+    <option>بلبل</option><option>کاکادو</option><option>ماکائو</option>
+   </select>
+  </div>
+  <div class="field">
+   <label for="priceFilter">محدوده قیمت</label>
+   <select id="priceFilter">
+    <option value="all">همه قیمت‌ها</option>
+    <option value="1">زیر ۵ میلیون</option>
+    <option value="2">۵ تا ۲۰ میلیون</option>
+    <option value="3">۲۰ تا ۵۰ میلیون</option>
+    <option value="4">بیشتر از ۵۰ میلیون</option>
+   </select>
+  </div>
+  <div class="field">
+   <label for="sortFilter">مرتب‌سازی</label>
+   <select id="sortFilter">
+    <option value="new">جدیدترین</option>
+    <option value="cheap">ارزان‌ترین</option>
+    <option value="expensive">گران‌ترین</option>
+    <option value="name">نام پرنده</option>
+   </select>
+  </div>
+  <button class="btn btn-primary" id="resetFilters">پاک‌کردن فیلترها</button>
+ </div>
+
+ <div class="result-line">
+  <strong id="resultTitle">همه آگهی‌ها</strong>
+  <span id="resultCount">در حال بارگذاری...</span>
+ </div>
+ <div class="product-grid" id="productGrid" aria-live="polite"></div>
+ <div class="pagination" id="pagination"></div>
+</section>
+
+<section class="container reveal" id="about">
+ <div class="feature-strip">
+  <div>
+   <div class="kicker" style="color:#d9ac4f">THE ASHIYANEH STANDARD</div>
+   <h2>خرید آگاهانه، نگهداری مسئولانه</h2>
+   <p>زیبایی پرندگان زمانی معنا دارد که سلامت، رفاه و شرایط مناسب زندگی آن‌ها در اولویت باشد.</p>
+   <a href="#contact" class="btn btn-light">ارتباط با آشیانه ←</a>
+  </div>
+  <div class="feature-items">
+   <div class="feature-item"><span style="font-size:24px">♧</span><b>بررسی سلامت</b><span class="t">پیش از خرید، وضعیت سلامت و سوابق پرنده را بررسی کن.</span></div>
+   <div class="feature-item"><span style="font-size:24px">⌕</span><b>انتخاب آگاهانه</b><span class="t">نیازهای غذایی، فضای مناسب و طول عمر گونه را بشناس.</span></div>
+   <div class="feature-item"><span style="font-size:24px">♡</span><b>رفاه پرندگان</b><span class="t">از خرید گونه‌های حفاظت‌شده یا فاقد مدارک قانونی خودداری کن.</span></div>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer id="contact">
+ <div class="container">
+  <div class="footer-grid">
+   <div>
+    <a class="brand" href="#home"><span class="brand-icon">♧</span><span>آشیانه<small>ASHIYANEH</small></span></a>
+    <p>فضایی برای مشاهده و معرفی پرندگان زینتی. انتخاب مسئولانه، احترام به طبیعت و توجه به سلامت پرندگان، اصول این مجموعه هستند.</p>
+   </div>
+   <div>
+    <h3>دسترسی سریع</h3>
+    <div class="footer-links">
+     <a href="#home">صفحه اصلی</a><a href="#categories">دسته‌بندی‌ها</a>
+     <a href="#market">مشاهده آگهی‌ها</a><a href="#about">راهنمای انتخاب</a>
+    </div>
+   </div>
+   <div>
+    <h3>راهنمای خرید</h3>
+    <p>برای خرید پرندگان زینتی ، با شماره ی زیر هماهنگ کنید.</p>
+   </div>
+  </div>
+  <div class="phone-card">
+   <div>
+    <strong>🏷 برای خرید پرنده، به شماره‌ی مورد نظر پیام دهید:</strong>
+    <p style="margin:5px 0 0">برای کپی شماره روی آن کلیک کنید.</p>
+   </div>
+   <div class="phone-actions">
+    <button class="btn btn-light" id="copyPhone"><span class="phone-number">09123585844</span>　▣</button>
+    <a class="btn call-btn" href="tel:09123585844">📞 تماس</a>
+   </div>
+  </div>
+  <div class="copyright">© ۱۴۰۵ آشیانه — تمام حقوق محفوظ است.</div>
+ </div>
+</footer>
+
+<button id="toTop" aria-label="بازگشت به بالا">↑</button>
+<div class="toast" id="toast" role="status"></div>
+
+<div class="overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-label="جزئیات پرنده">
+ <div class="modal" id="modalContent"></div>
+</div>
+
+<div class="compare-bar" id="compareBar">
+ <span id="compareText">۰ پرنده برای مقایسه</span>
+ <button class="btn btn-gold" id="compareNow">مقایسه</button>
+ <button class="btn btn-outline" id="clearCompare">پاک‌کردن</button>
+</div>
+
+<script>
+"use strict";
+
+/* آگهی‌های نمایشی: قیمت‌ها و موجودی‌ها واقعی نیستند. */
+const species = [
+ {name:"کاسکو",cat:"کاسکو",variants:["کنگو","تیمنه","جوان","خاکستری آفریقایی","دم‌قرمز","دست‌آموز"],base:48000000,emoji:"🦜"},
+ {name:"قناری",cat:"قناری",variants:["زرد رسمی","سرخ","سفید","موزاییکی","یورکشایر","گلاستر"],base:1800000,emoji:"🐤"},
+ {name:"فنچ",cat:"فنچ",variants:["گورخری","جاوا","بنغالی","سفید","نارنجی","نقره‌ای"],base:450000,emoji:"🐦"},
+ {name:"عروس هلندی",cat:"عروس هلندی",variants:["لوتینو","خاکستری","مرواریدی","وایت‌فیس","دارچینی","ابلق"],base:4500000,emoji:"🦜"},
+ {name:"طوطی برزیلی",cat:"طوطی",variants:["صورت‌هلویی","فیشر","ماسک‌دار","آبی","سبز","دارای حلقه چشم"],base:2200000,emoji:"🦜"},
+ {name:"مرغ عشق",cat:"مرغ عشق",variants:["آبی","سبز","زرد","سفید","بنفش","اسپنگل"],base:500000,emoji:"🐦"},
+ {name:"ماکائو",cat:"طوطی",variants:["آبی‌طلایی","قرمز","سبز بال","هایاسینت","اسکارلت","جوان"],base:180000000,emoji:"🦜"},
+ {name:"کاکادو",cat:"طوطی",variants:["سفید","گوفین","مولکان","گالاه","چتری","جوان"],base:95000000,emoji:"🦜"},
+ {name:"مرغ مینا",cat:"مرغ مینا",variants:["معمولی","گوشواره‌ای","جوان","بالغ","پرورشی","آوازخوان"],base:3500000,emoji:"🐦"},
+ {name:"سهره",cat:"سهره",variants:["طلایی","قناری‌سان","مجلسی","پرورشی","جوان","رنگ طبیعی"],base:2800000,emoji:"🐤"},
+ {name:"کبوتر",cat:"کبوتر",variants:["کینگ","فانتزی","کفتر چاهی","دم‌چتری","مسابقه‌ای","قلمکار"],base:1200000,emoji:"🕊️"},
+ {name:"بلبل",cat:"بلبل",variants:["خرما","معمولی","پرورشی","جوان","آوازخوان","بالغ"],base:4000000,emoji:"🐦"},
+ {name:"طوطی سنگال",cat:"طوطی",variants:["جوان","بالغ","پرورشی","سبز و زرد","دست‌آموز","رنگ طبیعی"],base:18000000,emoji:"🦜"},
+ {name:"طوطی راهب",cat:"طوطی",variants:["سبز","آبی","خاکستری","جوان","بالغ","پرورشی"],base:12000000,emoji:"🦜"},
+ {name:"طوطی شاه‌طوطی",cat:"طوطی",variants:["سبز","آبی","نر","ماده","جوان","بالغ"],base:15000000,emoji:"🦜"},
+ {name:"طوطی آمازون",cat:"طوطی",variants:["پیشانی‌آبی","پیشانی‌زرد","بالغ","جوان","سبز","پرورشی"],base:75000000,emoji:"🦜"},
+ {name:"طوطی اکلکتوس",cat:"طوطی",variants:["نر سبز","ماده قرمز","جوان","بالغ","پرورشی","رنگ طبیعی"],base:85000000,emoji:"🦜"},
+ {name:"مرغ عشق انگلیسی",cat:"مرغ عشق",variants:["آبی","سبز","اسپنگل","سفید","ابلق","جوان"],base:3500000,emoji:"🐦"},
+ {name:"فنچ زبرا",cat:"فنچ",variants:["قهوه‌ای","سفید","سینه‌مشکی","ابلق","نر","ماده"],base:550000,emoji:"🐦"},
+ {name:"کبوتر زینتی",cat:"کبوتر",variants:["پشت‌کاکلی","جاکوبین","فانتزی","دم‌چتری","کینگ","فرفری"],base:2500000,emoji:"🕊️"}
+];
+
+const photoPool = [
+ "photo-1552728089-57bdde30beb3",
+ "photo-1555169062-013468b47731",
+ "photo-1549608276-5786777e6587",
+ "photo-1551085254-e96b210db58a",
+ "photo-1520808663317-647b476a81b9",
+ "photo-1444464666168-49d633b86797",
+ "photo-1452570053594-1b985d6ea890",
+ "photo-1474511320723-9a56873867b5"
+];
+
+const money = n => new Intl.NumberFormat("fa-IR").format(n);
+const listings = [];
+
+species.forEach((s, si) => {
+ s.variants.forEach((v, vi) => {
+  const id = si * 6 + vi + 1;
+  const price = Math.round(s.base * (0.76 + vi * 0.115 + (si % 3) * 0.08) / 10000) * 10000;
+  listings.push({
+   id, name:s.name, cat:s.cat, variant:v, price,
+   age:["۳ ماهه","۶ ماهه","۱ ساله","۲ ساله","جوان","بالغ"][vi],
+   location:["تهران","کرج","اصفهان","شیراز","مشهد","تبریز"][id % 6],
+   image:photoPool[(si + vi) % photoPool.length],
+   emoji:s.emoji, date:120 - id,
+   description:`این آگهی نمونه برای ${s.name} (${v}) است. پیش از خرید، وضعیت سلامت، سن دقیق، رژیم غذایی، شرایط نگهداری و مدارک قانونی پرنده را از فروشنده بررسی کنید.`,
+   sample:true
+  });
+ });
+});
+
+/* نرمال‌سازی متن برای جست‌وجو: حروف عربی، نیم‌فاصله و ارقام انگلیسی/عربی */
+const FA_DIGITS="۰۱۲۳۴۵۶۷۸۹";
+function norm(s){
+ return String(s)
+  .replace(/[\u064A\u0649]/g,"\u06CC")
+  .replace(/\u0643/g,"\u06A9")
+  .replace(/[\u0629\u06C0]/g,"\u0647")
+  .replace(/[\u064B-\u065F\u0670\u0640]/g,"")
+  .replace(/\u200C/g," ")
+  .replace(/[\u0660-\u0669]/g,d=>FA_DIGITS[d.charCodeAt(0)-0x0660])
+  .replace(/[0-9]/g,d=>FA_DIGITS[+d])
+  .replace(/\s+/g," ")
+  .toLocaleLowerCase("fa");
+}
+
+/* ذخیره و بازیابی علاقه‌مندی‌ها و مقایسه (در صورت دسترسی به localStorage) */
+function loadSet(key,max){
+ try{
+  const raw=JSON.parse(localStorage.getItem(key)||"[]");
+  if(!Array.isArray(raw))return new Set();
+  return new Set(raw.filter(id=>listings.some(b=>b.id===id)).slice(0,max));
+ }catch(e){return new Set()}
+}
+function saveState(){
+ try{
+  localStorage.setItem("ashiyaneh_fav_v1",JSON.stringify([...state.favorites]));
+  localStorage.setItem("ashiyaneh_cmp_v1",JSON.stringify([...state.compare]));
+ }catch(e){}
+}
+
+const state = {
+ search:"",cat:"همه",price:"all",sort:"new",page:1,perPage:16,
+ favorites:loadSet("ashiyaneh_fav_v1",100000),compare:loadSet("ashiyaneh_cmp_v1",3),favoritesOnly:false
+};
+
+const $ = id => document.getElementById(id);
+const grid = $("productGrid");
+let toastTimer;
+
+function toast(message){
+ const el=$("toast");
+ el.textContent=message;
+ el.classList.add("show");
+ clearTimeout(toastTimer);
+ toastTimer=setTimeout(()=>el.classList.remove("show"),2600);
+}
+function imageUrl(id){
+ return `https://images.unsplash.com/${id}?auto=format&fit=crop&w=650&q=75`;
+}
+function formatPrice(price){
+ return money(price)+" تومان";
+}
+function getFiltered(){
+ let data=listings.filter(b=>{
+  const term=norm(state.search.trim());
+  const text=norm([b.name,b.cat,b.variant,b.age,b.location].join(" "));
+  const matchesSearch=!term || text.includes(term);
+  const matchesCat=state.cat==="همه" || b.cat===state.cat || b.name===state.cat;
+  const matchesFav=!state.favoritesOnly || state.favorites.has(b.id);
+  let matchesPrice=true;
+  if(state.price==="1")matchesPrice=b.price<5000000;
+  if(state.price==="2")matchesPrice=b.price>=5000000 && b.price<20000000;
+  if(state.price==="3")matchesPrice=b.price>=20000000 && b.price<50000000;
+  if(state.price==="4")matchesPrice=b.price>=50000000;
+  return matchesSearch && matchesCat && matchesFav && matchesPrice;
+ });
+ if(state.sort==="cheap")data.sort((a,b)=>a.price-b.price);
+ if(state.sort==="expensive")data.sort((a,b)=>b.price-a.price);
+ if(state.sort==="name")data.sort((a,b)=>a.name.localeCompare(b.name,"fa"));
+ if(state.sort==="new")data.sort((a,b)=>a.id-b.id);
+ return data;
+}
+function productCard(b){
+ const fav=state.favorites.has(b.id);
+ const compare=state.compare.has(b.id);
+ return `
+ <article class="product">
+  <div class="product-image">
+   <img loading="lazy" src="${imageUrl(b.image)}" alt="${b.name} ${b.variant}"
+    onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1552728089-57bdde30beb3?auto=format&fit=crop&w=650&q=75'">
+   <span class="pill">آگهی نمونه</span>
+   <button class="fav ${fav?"active":""}" data-fav="${b.id}" aria-label="افزودن به علاقه‌مندی‌ها">${fav?"♥":"♡"}</button>
+  </div>
+  <div class="product-content">
+   <div class="product-type">${b.cat}</div>
+   <h3>${b.name} ${b.variant}</h3>
+   <div class="product-meta"><span>◷ ${b.age}</span><span>⌖ ${b.location}</span></div>
+   <div class="product-bottom">
+    <div class="price">${formatPrice(b.price)}<small> / نمونه</small></div>
+    <button class="btn btn-light" data-detail="${b.id}">جزئیات</button>
+   </div>
+   <div class="verified">ⓘ اطلاعات و قیمت نمایشی</div>
+   <button class="btn ${compare?"btn-primary":"btn-outline"}" style="width:100%;margin-top:10px" data-compare="${b.id}">
+    ${compare?"✓ انتخاب شده":"⇄ افزودن به مقایسه"}
+   </button>
+  </div>
+ </article>`;
+}
+function render(){
+ const data=getFiltered();
+ const totalPages=Math.max(1,Math.ceil(data.length/state.perPage));
+ state.page=Math.min(state.page,totalPages);
+ const start=(state.page-1)*state.perPage;
+ const pageData=data.slice(start,start+state.perPage);
+ $("resultCount").textContent=`${money(data.length)} آگهی نمونه`;
+ $("resultTitle").textContent=state.favoritesOnly?"پرنده‌های موردعلاقه":state.cat==="همه"?"ویترین پرندگان":`پرندگان دسته ${state.cat}`;
+ grid.innerHTML=pageData.length?pageData.map(productCard).join(""):`
+  <div class="empty"><div style="font-size:36px">⌕</div><strong>پرنده‌ای پیدا نشد</strong>
+  <p>عبارت جست‌وجو یا فیلترها را تغییر بده.</p>
+  <button class="btn btn-primary" onclick="resetAll()">نمایش همه پرندگان</button></div>`;
+ const pages=[];
+ for(let i=1;i<=totalPages;i++){
+  if(totalPages<=5 || i===1 || i===totalPages || Math.abs(i-state.page)<=1)pages.push(i);
+ }
+ $("pagination").innerHTML=totalPages<=1?"":`
+ <button data-page="${Math.max(1,state.page-1)}" ${state.page===1?"disabled":""}>قبلی</button>
+ ${pages.map(p=>`<button class="${p===state.page?"active":""}" data-page="${p}">${money(p)}</button>`).join("")}
+ <button data-page="${Math.min(totalPages,state.page+1)}" ${state.page===totalPages?"disabled":""}>بعدی</button>`;
+ $("favCount").textContent=money(state.favorites.size);
+ updateCompare();
+ saveState();
+}
+function resetAll(){
+ state.search="";state.cat="همه";state.price="all";state.sort="new";
+ state.page=1;state.favoritesOnly=false;
+ $("search").value="";$("kindFilter").value="همه";$("priceFilter").value="all";$("sortFilter").value="new";
+ $("favNav").style.background="";
+ document.querySelectorAll(".category").forEach(c=>c.classList.toggle("active",c.dataset.category==="همه"));
+ render();
+}
+function setCategory(cat){
+ state.cat=cat;state.favoritesOnly=false;state.page=1;
+ $("kindFilter").value=[...$("kindFilter").options].some(o=>o.value===cat)?cat:"همه";
+ document.querySelectorAll(".category").forEach(c=>c.classList.toggle("active",c.dataset.category===cat));
+ render();
+ $("market").scrollIntoView({behavior:"smooth",block:"start"});
+}
+function updateCompare(){
+ const n=state.compare.size;
+ $("compareText").textContent=`${money(n)} پرنده برای مقایسه`;
+ $("compareBar").classList.toggle("show",n>0);
+}
+function toggleFavorite(id){
+ if(state.favorites.has(id))state.favorites.delete(id);else state.favorites.add(id);
+ render();
+}
+function toggleCompare(id){
+ if(state.compare.has(id)){state.compare.delete(id)}
+ else{
+  if(state.compare.size>=3){toast("برای مقایسه حداکثر ۳ پرنده انتخاب کن.");return}
+  state.compare.add(id);
+ }
+ render();
+}
+function showDetails(id){
+ const b=listings.find(x=>x.id===id);if(!b)return;
+ $("modalContent").innerHTML=`
+ <button class="modal-close" id="closeModal" aria-label="بستن">×</button>
+ <div class="modal-grid">
+  <div><img src="${imageUrl(b.image)}" alt="${b.name} ${b.variant}"></div>
+  <div>
+   <div class="kicker">جزئیات آگهی نمونه</div>
+   <h2>${b.name} ${b.variant}</h2>
+   <div class="modal-price">${formatPrice(b.price)}</div>
+   <p>گونه: ${b.cat}<br>تنوع: ${b.variant}<br>سن نمونه: ${b.age}<br>موقعیت نمونه: ${b.location}</p>
+   <div class="modal-note">${b.description}</div>
+   <p>این آگهی صرفاً برای آزمایش طراحی سایت ساخته شده و نشان‌دهنده موجودی واقعی نیست.</p>
+   <button class="btn btn-primary" id="modalCopy">کپی شماره تماس</button>
+   <button class="btn btn-light" id="modalCompare">⇄ مقایسه این پرنده</button>
+  </div>
+ </div>`;
+ $("modalOverlay").classList.add("open");
+ $("closeModal").onclick=closeModal;
+ $("modalCopy").onclick=copyPhone;
+ $("modalCompare").onclick=()=>{toggleCompare(id);closeModal()};
+}
+function closeModal(){$("modalOverlay").classList.remove("open")}
+async function copyPhone(){
+ try{
+  await navigator.clipboard.writeText("09123585844");
+  toast("شماره 09123585844 کپی شد.");
+ }catch(e){
+  const input=document.createElement("textarea");
+  input.value="09123585844";input.style.position="fixed";input.style.opacity="0";
+  document.body.appendChild(input);input.select();
+  const ok=document.execCommand("copy");input.remove();
+  toast(ok?"شماره 09123585844 کپی شد.":"کپی خودکار ممکن نشد؛ شماره 09123585844 را دستی کپی کن.");
+ }
+}
+function compareSelected(){
+ const items=listings.filter(b=>state.compare.has(b.id));
+ if(items.length<2){toast("برای مقایسه، حداقل ۲ پرنده انتخاب کن.");return}
+ $("modalContent").innerHTML=`
+  <button class="modal-close" id="closeModal" aria-label="بستن">×</button>
+  <h2>مقایسه پرندگان</h2><p>مشخصات و قیمت‌های زیر نمونه و غیرواقعی هستند.</p>
+  <div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:12px;text-align:right">
+   <thead><tr><th style="padding:12px;background:#eef1f6">ویژگی</th>${items.map(b=>`<th style="padding:12px;background:#eef1f6">${b.name}</th>`).join("")}</tr></thead>
+   <tbody>${[
+    ["تنوع",b=>b.variant],["دسته",b=>b.cat],["سن نمونه",b=>b.age],
+    ["موقعیت نمونه",b=>b.location],["قیمت نمایشی",b=>formatPrice(b.price)]
+   ].map(row=>`<tr>${`<td style="padding:12px;border-top:1px solid #e1e6ed;font-weight:700">${row[0]}</td>`}${items.map(b=>`<td style="padding:12px;border-top:1px solid #e1e6ed">${row[1](b)}</td>`).join("")}</tr>`).join("")}</tbody>
+  </table></div>`;
+ $("modalOverlay").classList.add("open");
+ $("closeModal").onclick=closeModal;
+}
+function showSellForm(){
+ $("modalContent").innerHTML=`
+ <button class="modal-close" id="closeModal" aria-label="بستن">×</button>
+ <div class="kicker">SELL ON ASHIYANEH</div><h2>ثبت آگهی فروش</h2>
+ <p>این فرم فعلاً نمایشی است. اطلاعات جایی ذخیره یا منتشر نمی‌شود.</p>
+ <form id="sellForm">
+  <div class="form-grid">
+   <div class="field"><label for="sellKind">گونه پرنده</label>
+    <select id="sellKind" required>
+     <option value="">انتخاب کن</option>
+     ${species.map(s=>`<option>${s.name}</option>`).filter((v,i,a)=>a.indexOf(v)===i).join("")}
+    </select>
+   </div>
+   <div class="field"><label for="sellVariant">تنوع یا نژاد</label><input id="sellVariant" required placeholder="مثلاً لوتینو"></div>
+   <div class="field"><label for="sellPrice">قیمت پیشنهادی (تومان)</label><input id="sellPrice" type="number" min="0" required placeholder="مثلاً 5000000"></div>
+   <div class="field"><label for="sellCity">شهر</label><input id="sellCity" required placeholder="مثلاً تهران"></div>
+   <div class="field full"><label for="sellDesc">توضیحات</label><textarea id="sellDesc" rows="3" style="width:100%;padding:12px;border:1px solid #d5dce7;border-radius:8px;background:#fafbfd" placeholder="سن، شرایط نگهداری و توضیحات لازم"></textarea></div>
+  </div>
+  <button class="btn btn-primary" style="margin-top:15px;width:100%" type="submit">بررسی اطلاعات</button>
+ </form>
+ <div class="modal-note" style="margin-top:12px">برای ثبت واقعی آگهی به سرور، ذخیره‌سازی، احراز هویت و سامانه مدیریت نیاز داریم.</div>`;
+ $("modalOverlay").classList.add("open");
+ $("closeModal").onclick=closeModal;
+ $("sellForm").onsubmit=e=>{
+  e.preventDefault();
+  toast("فرم آزمایشی تکمیل شد؛ آگهی منتشر یا ذخیره نشد.");
+  closeModal();
+ };
+}
+grid.addEventListener("click",e=>{
+ const f=e.target.closest("[data-fav]");
+ const c=e.target.closest("[data-compare]");
+ const d=e.target.closest("[data-detail]");
+ if(f)toggleFavorite(Number(f.dataset.fav));
+ if(c)toggleCompare(Number(c.dataset.compare));
+ if(d)showDetails(Number(d.dataset.detail));
+});
+$("pagination").addEventListener("click",e=>{
+ const b=e.target.closest("[data-page]");if(!b)return;
+ state.page=Number(b.dataset.page);render();
+ $("market").scrollIntoView({behavior:"smooth",block:"start"});
+});
+$("categoryList").addEventListener("click",e=>{
+ const b=e.target.closest("[data-category]");if(b)setCategory(b.dataset.category);
+});
+$("search").addEventListener("input",e=>{state.search=e.target.value;state.page=1;render()});
+$("kindFilter").addEventListener("change",e=>setCategory(e.target.value));
+$("priceFilter").addEventListener("change",e=>{state.price=e.target.value;state.page=1;render()});
+$("sortFilter").addEventListener("change",e=>{state.sort=e.target.value;state.page=1;render()});
+$("resetFilters").onclick=resetAll;
+$("allCategories").onclick=()=>setCategory("همه");
+$("favNav").onclick=()=>{
+ state.favoritesOnly=!state.favoritesOnly;
+ state.page=1;
+ $("favNav").style.background=state.favoritesOnly?"#eef1f6":"";
+ render();
+ $("market").scrollIntoView({behavior:"smooth",block:"start"});
+ if(state.favoritesOnly)toast("نمایش علاقه‌مندی‌ها");
+};
+$("copyPhone").onclick=copyPhone;
+$("sellTop").onclick=showSellForm;
+$("heroSell").onclick=showSellForm;
+$("compareNow").onclick=compareSelected;
+$("clearCompare").onclick=()=>{state.compare.clear();render();toast("انتخاب‌های مقایسه پاک شدند.")};
+$("compareHelp").onclick=()=>toast("دو یا سه پرنده را با دکمه مقایسه انتخاب کن.");
+$("modalOverlay").addEventListener("click",e=>{if(e.target===$("modalOverlay"))closeModal()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
+
+render();
+</script>
+
+<script>
+/* ===== جلوه‌های ظریف صفحه (بدون دخالت در منطق اصلی سایت) ===== */
+(function(){
+"use strict";
+const reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ۱) نوار پیشرفت اسکرول + هدر + دکمه بازگشت به بالا + منوی فعال */
+const bar=document.getElementById("progress"),hdr=document.getElementById("siteHeader"),toTopBtn=document.getElementById("toTop");
+const links=[...document.querySelectorAll(".navlinks a")];
+const targets=links.map(a=>document.querySelector(a.getAttribute("href")));
+function onScroll(){
+ const h=document.documentElement,max=h.scrollHeight-h.clientHeight;
+ bar.style.width=(max>0?h.scrollTop/max*100:0)+"%";
+ hdr.classList.toggle("scrolled",h.scrollTop>20);
+ toTopBtn.classList.toggle("show",h.scrollTop>600);
+ let cur=0;targets.forEach((t,i)=>{if(t&&t.getBoundingClientRect().top<160)cur=i});
+ links.forEach((a,i)=>a.classList.toggle("on",i===cur&&h.scrollTop>80));
+}
+window.addEventListener("scroll",onScroll,{passive:true});onScroll();
+toTopBtn.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
+
+/* ۲) نمایش تدریجی بخش‌ها هنگام اسکرول */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+
+/* ۳) شمارنده متحرک آمارها */
+const faD="۰۱۲۳۴۵۶۷۸۹";
+const toNum=s=>+[...s].map(c=>faD.indexOf(c)).join("");
+document.querySelectorAll(".stat strong").forEach(el=>{
+ const t=el.textContent.trim();
+ if(!/^[۰-۹]+\+?$/.test(t))return;
+ const plus=t.endsWith("+"),end=toNum(t.replace("+","")),fmt=new Intl.NumberFormat("fa-IR");
+ el.textContent=fmt.format(0)+(plus?"+":"");
+ const so=new IntersectionObserver(es=>{
+  if(!es[0].isIntersecting)return;so.disconnect();
+  if(reduce){el.textContent=t;return}
+  const t0=performance.now(),dur=1500;
+  (function step(n){
+   const p=Math.min(1,(n-t0)/dur),e=1-Math.pow(1-p,3);
+   el.textContent=fmt.format(Math.round(end*e))+(plus?"+":"");
+   if(p<1)requestAnimationFrame(step);
+  })(t0);
+ },{threshold:.6});so.observe(el);
+});
+
+/* ۴) ورود پلکانی کارت‌های آگهی (فقط هنگام تغییر فیلتر، جست‌وجو، دسته‌بندی یا صفحه) */
+const grid=document.getElementById("productGrid");
+let animateNext=true;
+function stagger(){
+ const play=animateNext;animateNext=false;
+ grid.querySelectorAll(".product").forEach((c,i)=>{
+  c.style.animationDelay=Math.min(i,15)*40+"ms";
+  if(play)c.classList.add("enter");
+ });
+}
+new MutationObserver(stagger).observe(grid,{childList:true});
+stagger();
+function arm(){animateNext=true}
+document.addEventListener("input",e=>{if(e.target.id==="search")arm()},true);
+document.addEventListener("change",e=>{if(["kindFilter","priceFilter","sortFilter"].includes(e.target.id))arm()},true);
+document.addEventListener("click",e=>{
+ if(e.target.closest("#pagination [data-page],.category,#resetFilters,#allCategories,#favNav,.empty .btn"))arm();
+},true);
+
+/* ۵) منوی موبایل */
+const mBtn=document.getElementById("menuBtn"),mNav=document.getElementById("mnav");
+function setMenu(open){
+ mNav.classList.toggle("open",open);
+ mBtn.setAttribute("aria-expanded",open?"true":"false");
+ mBtn.setAttribute("aria-label",open?"بستن منو":"باز کردن منو");
+ mBtn.textContent=open?"✕":"☰";
+}
+mBtn.addEventListener("click",()=>setMenu(!mNav.classList.contains("open")));
+mNav.addEventListener("click",e=>{if(e.target.closest("a"))setMenu(false)});
+document.getElementById("mSell").addEventListener("click",()=>{setMenu(false);showSellForm()});
+document.addEventListener("click",e=>{if(mNav.classList.contains("open")&&!hdr.contains(e.target))setMenu(false)});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")setMenu(false)});
+window.addEventListener("resize",()=>{if(window.innerWidth>650)setMenu(false)});
+
+/* ۶) قفل اسکرول صفحه هنگام باز بودن پنجره‌ها */
+const ov=document.getElementById("modalOverlay");
+new MutationObserver(()=>document.body.classList.toggle("modal-open",ov.classList.contains("open")))
+ .observe(ov,{attributes:true,attributeFilter:["class"]});
+})();
+</script>
+</body>
+</html>
