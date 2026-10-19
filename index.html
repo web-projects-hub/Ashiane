@@ -911,5 +911,152 @@ new MutationObserver(()=>document.body.classList.toggle("modal-open",ov.classLis
  .observe(ov,{attributes:true,attributeFilter:["class"]});
 })();
 </script>
+
+<!-- افزونه‌های تکمیلی آشیانه؛ بدون حذف یا بازنویسی کد اصلی -->
+<style>
+/* افزونه‌های حرفه‌ای */
+.ashi-extra-notice{margin:0 auto 18px;padding:14px 18px;border:1px solid #ead8ad;border-right:4px solid var(--gold);border-radius:12px;background:linear-gradient(110deg,#fff,#fffaf0);color:#3e4653;font-size:12px;line-height:2}
+.ashi-extra-notice strong{color:var(--navy)}
+.ashi-tools{position:fixed;right:18px;bottom:78px;z-index:55;display:flex;flex-direction:column;gap:9px}
+.ashi-tool{border:1px solid #ffffff30;border-radius:12px;background:var(--navy);color:#fff;min-height:44px;padding:10px 13px;box-shadow:0 8px 24px #0f1b2d25;font-size:12px;font-weight:700;transition:transform .2s,background .2s}
+.ashi-tool:hover{transform:translateY(-3px);background:var(--navy3)}
+.ashi-tool.gold{background:var(--gold);color:#fff}
+.ashi-extra-section{padding:26px 0 12px}
+.ashi-extra-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.ashi-extra-card{background:#fff;border:1px solid var(--line);border-radius:13px;padding:20px;box-shadow:var(--shadow);transition:transform .25s,border-color .25s}
+.ashi-extra-card:hover{transform:translateY(-4px);border-color:#d7bc7b}
+.ashi-extra-card .num{display:grid;place-items:center;width:36px;height:36px;border-radius:10px;background:#f8f0df;color:var(--gold);font-weight:900;margin-bottom:12px}
+.ashi-extra-card h3{font-size:14px;color:var(--navy);margin:0 0 7px}
+.ashi-extra-card p{font-size:12px;color:var(--muted);margin:0;line-height:2}
+.ashi-faq{border:1px solid var(--line);border-radius:11px;background:#fff;margin:9px 0;overflow:hidden}
+.ashi-faq summary{cursor:pointer;padding:14px 17px;font-size:13px;font-weight:800;color:var(--navy)}
+.ashi-faq p{padding:0 17px 14px;margin:0;color:var(--muted);font-size:12px;line-height:2}
+.ashi-city-field{min-width:0}
+.ashi-modal-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ashi-modal-actions .btn{flex:1}
+@media(max-width:650px){
+ .ashi-tools{right:10px;bottom:72px}
+ .ashi-tool{padding:9px 11px;font-size:11px}
+ .ashi-extra-grid{grid-template-columns:1fr}
+ .ashi-extra-notice{font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){.ashi-extra-card,.ashi-tool{transition:none!important}}
+</style>
+<script>
+(function(){
+"use strict";
+const $x=id=>document.getElementById(id);
+const moneyX=n=>new Intl.NumberFormat("fa-IR").format(n);
+const notifyX=msg=>{if(typeof window.toast==="function")window.toast(msg);else alert(msg)};
+
+/* یادآوری شفافیت: آگهی‌ها و قیمت‌های نسخه فعلی نمونه هستند. */
+const market=$x("market");
+if(market){
+ const notice=document.createElement("div");
+ notice.className="ashi-extra-notice";
+ notice.innerHTML="<strong>نکته مهم درباره نسخه فعلی:</strong> آگهی‌ها، قیمت‌ها، شهرها و آمارهای موجود در این نسخه نمایشی هستند. فرم ثبت آگهی فعلاً اطلاعات را منتشر نمی‌کند. برای خریدوفروش واقعی باید بخش سرور، پایگاه داده، حساب کاربری و تأیید آگهی‌ها راه‌اندازی شود.";
+ market.insertBefore(notice,market.querySelector(".filters"));
+}
+
+/* فیلتر شهر؛ به فیلترهای موجود افزوده می‌شود و منطق قبلی را حذف نمی‌کند. */
+const filters=document.querySelector(".filters");
+if(filters && !$x("ashiCityFilter")){
+ const field=document.createElement("div");
+ field.className="field ashi-city-field";
+ field.innerHTML='<label for="ashiCityFilter">شهر آگهی</label><select id="ashiCityFilter"><option value="همه">همه شهرها</option></select>';
+ const sort=$x("sortFilter")?.closest(".field");
+ filters.insertBefore(field,sort||filters.lastElementChild);
+ const cities=[...new Set((window.listings||[]).map(x=>x.location))];
+ /* listings در اسکریپت اصلی داخل scope سراسری const است؛ برای نسخه‌های معمولی از گزینه‌های ثابت استفاده می‌کنیم. */
+ ["تهران","کرج","اصفهان","شیراز","مشهد","تبریز"].forEach(city=>{
+  const o=document.createElement("option");o.value=city;o.textContent=city;$x("ashiCityFilter").appendChild(o);
+ });
+ filters.style.gridTemplateColumns="2fr 1fr 1fr 1fr 1fr auto";
+}
+let selectedCity="همه";
+function applyCityFilterX(){
+ if(typeof state==="undefined")return;
+ const q=$x("search")?.value.trim()||"";
+ state.search=[q,selectedCity==="همه"?"":selectedCity].filter(Boolean).join(" ");
+ state.page=1;
+ render();
+}
+if($x("ashiCityFilter")){
+ $x("ashiCityFilter").addEventListener("change",e=>{
+  selectedCity=e.target.value;
+  applyCityFilterX();
+ });
+ /* جست‌وجو و فیلتر شهر هم‌زمان حفظ می‌شوند. */
+ $x("search")?.addEventListener("input",()=>{if(selectedCity!=="همه")applyCityFilterX()});
+ const reset=$x("resetFilters");
+ if(reset)reset.addEventListener("click",()=>{selectedCity="همه";$x("ashiCityFilter").value="همه";});
+}
+
+/* میانبرهای کاربردی و اشتراک‌گذاری صفحه */
+document.addEventListener("keydown",e=>{
+ if(e.key==="/" && !["INPUT","TEXTAREA","SELECT"].includes(document.activeElement.tagName) && !$x("modalOverlay")?.classList.contains("open")){
+  e.preventDefault();$x("search")?.focus();
+ }
+});
+const tools=document.createElement("div");
+tools.className="ashi-tools";
+tools.innerHTML='<button class="ashi-tool gold" type="button" id="ashiQuickSell">＋ ثبت آگهی</button><button class="ashi-tool" type="button" id="ashiShare">↗ اشتراک‌گذاری</button>';
+document.body.appendChild(tools);
+$x("ashiQuickSell").addEventListener("click",()=>{if(typeof window.showSellForm==="function")window.showSellForm();else $x("sellTop")?.click()});
+$x("ashiShare").addEventListener("click",async()=>{
+ const data={title:document.title,text:"بازار تخصصی پرندگان آشیانه",url:location.href};
+ try{
+  if(navigator.share){await navigator.share(data)}
+  else if(navigator.clipboard && window.isSecureContext){await navigator.clipboard.writeText(location.href);notifyX("پیوند سایت کپی شد.")}
+  else {const ta=document.createElement("textarea");ta.value=location.href;document.body.appendChild(ta);ta.select();const ok=document.execCommand("copy");ta.remove();notifyX(ok?"پیوند سایت کپی شد.":"امکان کپی خودکار نیست؛ آدرس سایت را از نوار مرورگر کپی کن.")}
+ }catch(e){if(e.name!=="AbortError")notifyX("اشتراک‌گذاری انجام نشد؛ آدرس سایت را از نوار مرورگر کپی کن.")}
+});
+
+/* راهنمای خرید و پرسش‌های متداول */
+const about=$x("about");
+if(about && !$x("ashiBuyingGuide")){
+ const section=document.createElement("section");
+ section.id="ashiBuyingGuide";
+ section.className="container ashi-extra-section reveal";
+ section.innerHTML=`
+ <div class="section-head"><div><div class="kicker">BUY WITH CARE</div><h2>راهنمای خرید مطمئن</h2><p>چند بررسی ساده برای انتخاب مسئولانه‌تر و کاهش ریسک معامله.</p></div></div>
+ <div class="ashi-extra-grid">
+  <article class="ashi-extra-card"><div class="num">۰۱</div><h3>سلامت و شرایط نگهداری</h3><p>از فروشنده درباره اشتها، رفتار، رژیم غذایی، سن دقیق و سابقه مراجعه به دامپزشک سؤال کن. در صورت امکان پیش از معامله از متخصص پرندگان کمک بگیر.</p></article>
+  <article class="ashi-extra-card"><div class="num">۰۲</div><h3>مدارک و منشأ قانونی</h3><p>برای گونه‌هایی که نیازمند مجوز یا مدارک هستند، مدارک معتبر را بررسی کن و از خرید پرندگان حفاظت‌شده یا دارای منشأ نامشخص بپرهیز.</p></article>
+  <article class="ashi-extra-card"><div class="num">۰۳</div><h3>معامله امن</h3><p>پیش از پرداخت، هویت و اطلاعات فروشنده را بررسی کن؛ از پرداخت بیعانه تحت فشار و اعتماد به عکس یا ادعای تأییدنشده خودداری کن.</p></article>
+ </div>
+ <div style="margin-top:26px"><div class="section-head"><div><div class="kicker">HELP CENTER</div><h2>پرسش‌های متداول</h2></div></div>
+  <details class="ashi-faq"><summary>آیا قیمت‌های این سایت واقعی هستند؟</summary><p>خیر؛ آگهی‌ها و قیمت‌های نسخه فعلی نمونه و نمایشی هستند و برای معامله واقعی باید اطلاعات معتبر و تأییدشده جایگزین شوند.</p></details>
+  <details class="ashi-faq"><summary>چطور آگهی فروش ثبت کنم؟</summary><p>دکمه «ثبت آگهی» فرم آزمایشی را باز می‌کند. در نسخه فعلی اطلاعات فرم در سرور ذخیره یا در سایت منتشر نمی‌شود.</p></details>
+  <details class="ashi-faq"><summary>آیا این سایت در حال حاضر پرداخت آنلاین دارد؟</summary><p>خیر؛ پرداخت آنلاین، حساب کاربری و سامانه پیام‌رسانی در این فایل HTML پیاده‌سازی نشده‌اند و برای فعال‌سازی به زیرساخت امن سمت سرور نیاز دارند.</p></details>
+  <details class="ashi-faq"><summary>چگونه از سلامت پرنده مطمئن شوم؟</summary><p>ظاهر به‌تنهایی سلامت را تضمین نمی‌کند. وضعیت پرنده را حضوری بررسی کن و در صورت امکان از دامپزشک آشنا با پرندگان کمک بگیر.</p></details>
+ </div>`;
+ about.insertAdjacentElement("afterend",section);
+ if("IntersectionObserver" in window){
+  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("in");observer.unobserve(entry.target)}}),{threshold:.08});
+  observer.observe(section);
+ }else section.classList.add("in");
+}
+
+/* افزودن دکمه کپی پیوند به پنجره جزئیات، بدون دست‌کاری تابع اصلی */
+const modal=$x("modalContent");
+if(modal){
+ new MutationObserver(()=>{
+  const heading=modal.querySelector("h2");
+  if(!heading || modal.querySelector("#ashiCopyListingLink"))return;
+  const row=document.createElement("div");row.className="ashi-modal-actions";
+  row.innerHTML='<button type="button" class="btn btn-outline" id="ashiCopyListingLink">↗ کپی پیوند صفحه</button>';
+  const target=modal.querySelector(".modal-grid > div:last-child")||modal;
+  target.appendChild(row);
+  $x("ashiCopyListingLink").addEventListener("click",async()=>{
+   const url=location.href.split("#")[0]+"#market";
+   try{await navigator.clipboard.writeText(url);notifyX("پیوند ویترین آشیانه کپی شد.")}
+   catch(e){notifyX("برای اشتراک‌گذاری، آدرس سایت را از نوار مرورگر کپی کن.")}
+  });
+ }).observe(modal,{childList:true,subtree:true});
+}
+})();
+</script>
+
 </body>
 </html>
